@@ -1,5 +1,8 @@
 # 基础
 
+
+[TOC]
+
 # 一、注释
 ```
 # this is a comment （注释）
@@ -125,14 +128,14 @@ print(x[0:3])  # Hel
 ```
 
 也可以倒过来切块：
-```
+```python
 x = "Hello, world"
 
 print(x[-4:-1]) # orl
 ```
 
 获取字符串的字符长度可以用 `len()`方法，使用如下：
-```
+```python
 x = "Hello, world"
 
 print(len(x))  # 12
@@ -142,38 +145,38 @@ print(len(x))  # 12
 字符串还有一些内置的方法可以使用
 
 - strip()  去掉前后的空符号
-```
+```python
 x = " Hello, world"
 print(x.strip())   # returns "Hello, world"
-```
+```python
 
 - lower()  转小写
-```
+```python
 x = "Hello, World"
 print(x.lower())  # hello, world
 ```
 
 - upper() 转大写
-```
+```python
 x = "Hello, World"
 print(x.lower())  # HELLO, WORLD
 ```
 
 - replace()  替换字符
-```
+```python
 x = "Hello, world"
 print(x.replace(',',":"))   # Hello: world
 ```
 
 - split() 转数组
-```
+```python
 x = "Hello, world"
 print(x.split(','))  # ['Hello', ' world']
 ```
 
 - format() 格式化
 当变量的类型不一样时，是不能拼接的，比如数组+字符串就会报错，所以需要用到 `format()` 做一个格式化，如：
-```
+```python
 # 错误的写法
 n = 22
 s = "my age is" + n
@@ -196,7 +199,7 @@ print(s.format(n1,n2))
 
 
 检查某些值是否在字符串内时，可以使用 `in` 或 `not in`，如下：
-```
+```python
 x = "Hello, world"
 a = 'He' in x
 print(a)  # true
@@ -215,7 +218,7 @@ number 类型有三种：
 - complex   混合数
 
 案例如下：
-```
+```python
 x = 1   # int
 y = 3.8 # float 
 k = 1jk # comlex
@@ -230,7 +233,7 @@ print(type(k))   # <class 'complex'>
 ### int
 `int` 是整数，包括正数、负数，0
 
-```
+```python
 x = 1
 y = 0
 z = -3255522
@@ -241,7 +244,7 @@ print(type(x),type(y),type(z))
 
 ### float
 `float` 是浮点数，必须有小数点，最少一位，当然也正数、负数。
-```
+```python
 x = 1.10
 y = 1.0
 z = -35.59
@@ -253,7 +256,7 @@ print(type(x),type(y),type(z))
 
 ### complex 
 complex 是复杂类型，就是数值的尾部都有`j`字段。
-```
+```python
 x = 3+5j
 y = 5j
 z = -5j
@@ -267,7 +270,7 @@ print(type(x),type(y),type(z))
 数字的三种类型 `int`,`float`, `complex` 是可以相互转换的，对应的方法是 `int()`, `float()`, `complex()`。
 不过注意的一点是，`int`,`float`可以直接转成 `complex`, 而 `complex` 不能直接转成前者。
 
-```
+```python
 x = 1
 y = 1.2
 z = 5j
@@ -283,7 +286,7 @@ print(int(z))      # TypeError: can't convert complex to int
 ### Random Number （随机数）
 Python 并没有可以直接转换的 `random` 方法，需要自己导入 `random` 模块。
 
-```
+```python
 import random
 print(random.randrange(0,10))
 ```
@@ -294,7 +297,7 @@ print(random.randrange(0,10))
 
 在声明一个变量时，可以定义变量的类型。
 
-```
+```python
 x = int(1.2)
 y = float(9)
 z = str('myname')
@@ -312,7 +315,7 @@ print(x,y,z)  # 1 9.0 myname
 `Boolean` 类型只有两个值：`True` and `False`
 
 常用的判断：
-```
+```python
 print(10 > 9)   # True
 print(10 == 9)  # False
 print(10 < 9)   # False
@@ -320,7 +323,7 @@ print(10 < 9)   # False
 
 
 语句判断：
-```
+```python
 a,b = 1,2
 
 if a > b :
@@ -334,14 +337,14 @@ else:
 还可以使用 `bool()` 方法来判断值，但变量有值时，通常都会返回 `True`, 反之 返回 `False`。
 
 值不为空时，返回True。
-```
+```python
 print(bool("Hello"))  # True
 print(bool(15))       # True
 print(bool([1,2,3]))  # True
 ```
 
 值为空时，返回 False。
-```
+```python
 bool(False)
 bool(None)
 bool(0)
@@ -364,10 +367,27 @@ Python 的运算符，可以分为以下几种：
 - 成员运算符
 - 位运算符
   
+  
+### 4.1 算术运算符 (Arithmetic operators)
+
+算术运算符，即数值直接的计算。
+
+| 符号 | 名称 | 案例 | 
+|:--:|:--:|:--:|
+| + | 加 | x + y | 
+| - | 减 | x - y | 
+| * | 乘 | x * y | 
+| / | 除 | x / y | 
+| % | 模数 | x % y | 
+| ** | 幂 | x ** y | 
+| // | 向下取整 | x // y | 
 
 
+### 4.2 赋值运算符 （Assignment Operators）
 
 
+### 4.3 比较运算符（Comparison Operators）
 
-
+ 
+## 5. 数组 
 
