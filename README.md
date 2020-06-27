@@ -388,6 +388,107 @@ Python 的运算符，可以分为以下几种：
 
 ### 4.3 比较运算符（Comparison Operators）
 
- 
-## 5. 数组 
+
+## 5. 数组
+
+Python 中有四种集合数据类型：
+
+- List（数组）`有序，可更改，允许重复`
+- Tuple（元组） `有序，不可更改，允许重复`
+- Set（集合） `无序、无索引，不可重复`
+- Dictionary（字典）`无序，有索引，可更改，不可重复`
+
+### 5.1 List
+
+List 数组是最常用的集合，它的特点是：有序，有索引，可更改，可重复。
+
+list 获取:
+
+```python
+myList = ['Monday','Tuesday',1,2]
+
+print(myList)      # 输出数组 "['Monday', 'Tuesday', 1, 2]"
+
+print(myList[0])   # 输出第一个 "Monday"
+
+print(myList[-1])  # 负数输出最后一个 "2"
+
+print(myList[1:3]) # 输出范围，从索引1开始，到索引3结束，不包括3，输出“【’Tuesday‘,1】”
+
+print(myList[-4:-1])  # 负索引输出范围，倒过来输出  “【'Monday', 'Tuesday', 1]”
+
+```
+
+list 的新增，用 append() 与 insert() ，前者用于最后插入，后者用于指定位置插入，把其他的成员后推。
+
+```python
+myList = ['Monday','Tuesday',1,2]
+
+myList.append('Sunday')
+print(myList)   # ['Monday', 'Tuesday', 1, 2, 'Sunday']
+
+myList.insert(0,'Good!')
+print(myList)   # ['Good!', 'Monday', 'Tuesday', 1, 2, 'Sunday']
+
+```
+
+list 修改，只需指定序号：
+
+```python
+myList = ['Monday','Tuesday',1,2]
+myList[0] = 0
+print(myList)      # [0, 'Tuesday', 1, 2]
+```
+
+list 删除，用一下内置函数：
+
+- remove()  `删除成员`
+- pop()     `指定索引删除，没有索引则删除最后一项`
+- del()   `指定索引删除，也能删除整个list`
+- clear()  `清空数组`
+
+```python
+myList = ['Monday','Tuesday',1,2]
+myList.remove('Monday')
+print(myList) # ['Tuesday', 1, 2]
+
+myList = ['Monday','Tuesday',1,2]
+myList.pop(0)
+print(myList)  # ['Tuesday', 1, 2]
+
+myList = ['Monday','Tuesday',1,2]
+del myList[0]
+print(myList)  # ['Tuesday', 1, 2]
+
+# del myList     # 删除后，这 个list 没了
+# print(myList)  # NameError: name 'myList' is not defined
+
+myList = ['Monday','Tuesday',1,2]
+myList.clear()
+print(myList)    # []
+
+
+
+```
+
+
+list 遍历：
+
+```python
+for x in myList:
+  print(x)
+```
+
+检查是否存在：
+
+```python
+myList = ['Monday','Tuesday',1,2]
+
+if 1 in myList :
+  print('true')
+else:
+  print('false')
+
+# true
+```
 
