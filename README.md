@@ -7,6 +7,7 @@ Python 是一个高层次的结合了解释性、编译性、互动性和面向�
 - Python 是面向对象语言: 这意味着Python支持面向对象的风格或代码封装在对象的编程技术。
 - Python 是初学者的语言：Python 对初级程序员而言，是一种伟大的语言，它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏。
 
+教程：https://www.runoob.com/python3/python3-tutorial.html
 
 #### 基础操作
 
@@ -585,4 +586,7 @@ print(tup1)   # NameError: name 'tup1' is not defined
 | min(tuple) | min((1,3,4,5)) | 取最小值 | 
 | tuple(array) | tuple([1,3,4,5]) | 将其他数组转为Tuple  | 
 
+
+
+### 5.3 字典 
 
