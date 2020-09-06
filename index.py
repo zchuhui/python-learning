@@ -1,3 +1,4 @@
-tup1 = (1,2,3,4,5,6)
+# 写一个sum函数
+sum = lambda arg1,arg2:  arg1 + arg2
 
-print(tup1*2)   # NameError: name 'tup1' is not defined
+print('sum',sum(10,45))

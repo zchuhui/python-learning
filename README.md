@@ -356,7 +356,6 @@ print(10 == 9)  # False
 print(10 < 9)   # False
 ```
 
-
 语句判断：
 ```python
 a,b = 1,2
@@ -388,6 +387,14 @@ bool(())
 bool([])
 bool({})
 ```
+
+
+## 3.5 可更改与不可更改的对象
+
+在 python 中，string,tuple,number 属于不可更改的对象。而 list,dist 等则是可以修改的对象。
+
+- 不可变类型：变量赋值 a=5 后再赋值 a=10，这里实际是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，不是改变 a 的值，相当于新生成了 a。
+- 可变类型：变量赋值 la=[1,2,3,4] 后再赋值 la[2]=5 则是将 list la 的第三个元素值更改，本身la没有动，只是其内部的一部分值被修改了。
 
 
 
@@ -652,24 +659,276 @@ print(d1)   # NameError: name 'd1' is not defined
 ```
 
 clear 只是清除所有子元素：
-```
+
+```py
 d1 = {1:11,1.1:1.1}
 d1.clear()
 print(d1)  # {}
 ```
 
-
 #### 内置函数
 
-| 方法 | 实例 | 描述 | 
+| 方法 | 实例 | 描述 |
 |:--:|:--:|:--:|
-| len(dict) | len({1:1,2:222}) | 计算键的总数 | 
-| str(tuple) | str({1:1,2:222}) | 转字符串 | 
-| type(tuple) | type({1:1,2:222}) | 返回类型 | 
+| len(dict) | len({1:1,2:222}) | 计算键的总数 |
+| str(tuple) | str({1:1,2:222}) | 转字符串 |
+| type(tuple) | type({1:1,2:222}) | 返回类型 |
+
+### 5.3 Set（集合）
+
+Set（集合）是另类的数组，跟 List 不一样，Set 是无序的、不重复的。
+
+创建集合，可以使用 `{}` 跟 `set()`，但创建空的集合只能使用 `set()`。
+
+```py
+mySet = {'a','d','5',1,'a'}
+
+# 打印
+print(mySet)         # {'5', 1, 'a', 'd'}
+# 判断元素是否在集合里面
+print('a' in mySet)  # True
 
 
+# 使用 set() 创建
+mySet2 = set("abcdefg"),
+mySet3 = set("cde")
+mySet4 = set({'a','bb'})
+print(mySet2) # {'g', 'c', 'b', 'f', 'e', 'd', 'a'}
+print(mySet3) # {'e', 'd', 'c'}
+print(mySet4) # {'bb', 'a'}
+```
 
-### 5.3 Set 集合
+一些操作：
+
+```py
+
+# 操作
+# 新增
+s = set({'a','b','c'})
+s.add('dd')
+print(s)   # {'a', 'b', 'c', 'dd'}
+
+s.update('ee')
+print(s)   # {'a', 'dd', 'e', 'b', 'c'}
+
+s.update({'x1','x2'})
+print(s) # {'e', 'x2', 'c', 'a', 'x1', 'b', 'dd'}
+
+
+# 移除 
+s.remove('a')   # 如元素不存在会发生错误
+print(s)  #{'c', 'b', 'x2', 'e', 'x1', 'dd'}
+
+s.discard('a')  # 如元素不存在不会发生错误
+print(s)
+
+# 移除最后一位
+s.pop()
+print(s)
+
+
+# 获取长度
+print(len(s))   # 5
+
+# 清空
+print(s.clear())  # None
+```
+
+# 四、判断、循环语句
+
+## 4.1 条件：if...elif...else
+
+示例：
+
+```py
+if val == 10:
+  print(10)
+elif val == 50:
+  print(50)
+else:
+  print('no')
+```
+
+## 4.2 white 循环
+
+示例：
+
+```py
+
+val = 1
+
+while(val < 10):
+  print(val)
+  val += 1
+```
+
+## 4.3 for...in 循环
+
+示例1：
+
+```py
+
+list = ['a','b',4,5,6]
+
+for x in list:
+  print(x)
+```
+
+示例2：
+
+```py
+list = ['a','b',4,5,6]
+
+for x in list:
+  print(x)
+  if(x == 'b'):
+    break          # 跳出循环
+
+```
+
+## 4.4 range() 函数：遍历数字序列
+
+示例1：
+
+```py
+for i in range(4):
+  print(i)
+
+>> 0
+>> 1
+>> 2
+>> 3
+```
+
+## 4.5 迭代器与生成器
+
+### 迭代器 `iter()` 与 `next()`
+
+迭代是Python最强大的功能之一，是访问集合元素的一种方式。
+迭代器是一个可以记住遍历的位置的对象。
+迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。
+迭代器有两个基本的方法：iter() 和 next()。
+
+```py
+list= [1,3,4,5,6]
+it = iter(list)     # 创建一个迭代器
+
+# 输出迭代器的下一个元素
+print(next(it)) # 1
+print(next(it)) # 3
+print(next(it)) # 4
+print(next(it)) # 5
+print(next(it)) # 6
+```
+
+### 生成器 yield
+.....
+
+
+# 五、函数 
+
+## 5.1 定义 函数
+
+在python里定义一个函数的规则是：
+
+- 函数代码块以 def 关键词开头，后接函数标识符名称和圆括号 ()。
+- 任何传入参数和自变量必须放在圆括号中间，圆括号之间可以用于定义参数。
+- 函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。
+- 函数内容以冒号起始，并且缩进。
+- return [表达式] 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回 None。
+
+函数格式如下：
+
+```py
+def funName ( params ):
+  # ....
+```
+
+如：
+
+```py
+# 计算面积的函数
+def getArea(w,h):
+  return w*h
+
+w = 100
+h = 10
+# 调用函数
+print('area:',getArea(w,h))    # 1000
+
+```
+
+## 5.2 参数
+
+python 参数有四种类型：
+
+- 必须参数
+- 关键字参数
+- 默认参数
+- 不定长参数
+
+```py
+# 必须传入一个参数，否则报错   
+def printName(name):
+  print('my name is ',name)
+
+printName("gary")         
+
+
+# 关键字参数，可以不按照顺序传入
+def printInfo(name,age):
+  print('my name is ',name)
+  print('my age is ',age)
+
+printInfo(age=19, name="Marry")
+
+
+# 默认参数，可以不传
+def printInfo2(name,age= 13):
+  print('my name is ',name)
+  print('my age is ',age)
+
+printInfo2(name="Marry")
+
+
+# 传入不定长参数
+def printMoreInfo(arg1,*args):
+  "打印传入的所有参数"
+  print("input:")
+  print(arg1)
+  print(args)
+
+printMoreInfo(10,45,6,7,7,8)
+
+# input:
+# 10
+# (45, 6, 7, 7, 8)
+```
+
+## 5.3 匿名函数
+
+所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数。
+匿名函数的定义如下：
+
+```py
+lambda [arg1 [,arg2,.....argn]]:expression
+```
+
+匿名函数的定义如下：
+
+- lambda 只是一个表达式，函数体比 def 简单很多。
+- lambda的主体是一个表达式，而不是一个代码块。仅仅能在lambda表达式中封装有限的逻辑进去。
+- lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
+- 虽然lambda函数看起来只能写一行，却不等同于C或C++的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
+
+```py
+# 写一个sum函数
+sum = lambda arg1,arg2: arg1 + arg2
+
+print('sum',sum(10,45))
+```
+
+# 六、模块
 
 
 
