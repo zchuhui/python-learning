@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
 import uuid # Required for unique book instances
 
-# Create your models here.
+# 书籍类型
 class Genre(models.Model):
     """
     Model representing a book genre (e.g. Science Fiction, Non Fiction).
@@ -16,7 +16,7 @@ class Genre(models.Model):
         return self.name
 
 
-
+# 图书
 class Book(models.Model):
     """
     Model representing a book (but not a specific copy of a book).
@@ -45,7 +45,7 @@ class Book(models.Model):
         return reverse('book-detail', args=[str(self.id)])
 
 
-
+# 书籍实例
 class BookInstance(models.Model):
     """
     Model representing a specific copy of a book (i.e. that can be borrowed from the library).
@@ -75,7 +75,7 @@ class BookInstance(models.Model):
         return '%s (%s)' % (self.id,self.book.title)
 
 
-
+# 作者
 class Author(models.Model):
     """
     Model representing an author.
