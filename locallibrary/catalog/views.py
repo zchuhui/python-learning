@@ -25,6 +25,7 @@ def index(request):
     )
 
 
+
 # 书籍列表
 class BookListView(generic.ListView):
     model = Book
@@ -34,7 +35,34 @@ class BookListView(generic.ListView):
     template_name = 'catalog/book_list.html'  # 指定模板
     context_object_name = 'book_list'         # 指定字段
 
-# 书籍详情
+
+
+# 书籍详情（类）
 class BookDetailView(generic.DetailView):
     """Generic class-based detail view for a book."""
     model = Book
+
+# 书籍详情(函数)
+def book_detail_view(request,pk):
+    """
+    View function for book detail of site.
+    """
+    # get book detail by id
+    book=Book.objects.get(pk=pk)
+
+    return render(
+        request,
+        'catalog/book_detail.html',
+        context={'book':book}
+    )
+
+
+
+# 书籍列表
+class AuthorListView(generic.ListView):
+    model = Author
+
+    paginate_by = 10   # 分页，每页的条数
+    queryset = Author.objects.all()             # 返回全部数据
+    template_name = 'catalog/author_list.html'  # 指定模板
+    context_object_name = 'author_list'         # 指定字段
