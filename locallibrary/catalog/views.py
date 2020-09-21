@@ -4,6 +4,8 @@ from .models import Book, Author, BookInstance, Genre
 import logging
 
 # 书籍首页
+
+
 def index(request):
     """
     View function for home page of site.
@@ -16,14 +18,21 @@ def index(request):
         status__exact='a').count()
     num_authors = Author.objects.count()  # The 'all()' is implied by default.
 
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
         'index.html',
-        context={'num_books': num_books, 'num_instances': num_instances,
-                 'num_instances_available': num_instances_available, 'num_authors': num_authors},
+        context={
+            'num_books': num_books,
+            'num_instances': num_instances,
+            'num_instances_available': num_instances_available,
+            'num_authors': num_authors,
+            'num_visits':num_visits
+        },
     )
-
 
 
 # 书籍列表
@@ -36,26 +45,24 @@ class BookListView(generic.ListView):
     context_object_name = 'book_list'         # 指定字段
 
 
-
 # 书籍详情（类写法）
 # class BookDetailView(generic.DetailView):
 #     """Generic class-based detail view for a book."""
 #     model = Book
 
 # 书籍详情(函数写法)
-def book_detail_view(request,pk):
+def book_detail_view(request, pk):
     """
     View function for book detail of site.
     """
     # get book detail by id
-    book=Book.objects.get(pk=pk)
+    book = Book.objects.get(pk=pk)
 
     return render(
         request,
         'catalog/book_detail.html',
-        context={'book':book}
+        context={'book': book}
     )
-
 
 
 # 作者列表
@@ -69,15 +76,15 @@ class AuthorListView(generic.ListView):
 
 
 # 作者详情
-def author_detail_view(request,pk):
+def author_detail_view(request, pk):
     """
     View function for author detail of site.
     """
     # get book detail by id
-    author=Author.objects.get(pk=pk)
+    author = Author.objects.get(pk=pk)
 
     return render(
         request,
         'catalog/author_detail.html',
-        context={'author':author}
+        context={'author': author}
     )
