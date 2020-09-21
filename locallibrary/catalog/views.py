@@ -37,12 +37,12 @@ class BookListView(generic.ListView):
 
 
 
-# 书籍详情（类）
-class BookDetailView(generic.DetailView):
-    """Generic class-based detail view for a book."""
-    model = Book
+# 书籍详情（类写法）
+# class BookDetailView(generic.DetailView):
+#     """Generic class-based detail view for a book."""
+#     model = Book
 
-# 书籍详情(函数)
+# 书籍详情(函数写法)
 def book_detail_view(request,pk):
     """
     View function for book detail of site.
@@ -58,7 +58,7 @@ def book_detail_view(request,pk):
 
 
 
-# 书籍列表
+# 作者列表
 class AuthorListView(generic.ListView):
     model = Author
 
@@ -66,3 +66,18 @@ class AuthorListView(generic.ListView):
     queryset = Author.objects.all()             # 返回全部数据
     template_name = 'catalog/author_list.html'  # 指定模板
     context_object_name = 'author_list'         # 指定字段
+
+
+# 作者详情
+def author_detail_view(request,pk):
+    """
+    View function for author detail of site.
+    """
+    # get book detail by id
+    author=Author.objects.get(pk=pk)
+
+    return render(
+        request,
+        'catalog/author_detail.html',
+        context={'author':author}
+    )

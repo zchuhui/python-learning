@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>{{ author.first_name }} · {{ author.last_name }}</h1>
+<p>Birthdate:<strong>{{ author.date_of_birth }}</strong></p>
+<p>deathDate:<strong>{{ author.date_of_death }}</strong></p>
+
+{% endblock %}
