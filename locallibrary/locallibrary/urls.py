@@ -13,29 +13,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
+from django.conf import settings
+from django.views.generic import RedirectView
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+# 开启用户系统
 urlpatterns = [
     path('admin/', admin.site.urls)
 ]
 
+# 开启 catalog 模块
 urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
-
-from django.views.generic import RedirectView
 urlpatterns += [
     path('', RedirectView.as_view(url='/catalog/')),
 ]
 
-
-from django.conf import settings
-from django.conf.urls.static import static
+# 配置静态文件
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-# urlpatterns += [
-#     path('catalog/',include('catalog.urls')),
-# ]
+
+# 用户登录模块
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
