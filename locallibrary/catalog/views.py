@@ -2,10 +2,11 @@ from django.views import generic
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 import logging
+from django.contrib.auth.decorators import login_required    # 用来限制登录验证，未登录的不能使用，用于函数
+from django.contrib.auth.mixins import LoginRequiredMixin    # 用来限制登录验证，未登录的不能使用，用于类
 
 # 书籍首页
-
-
+@login_required  # 加上这个验证之后，如果用户未登录，则无法使用该函数，直接跳转到登录页。
 def index(request):
     """
     View function for home page of site.
@@ -36,7 +37,7 @@ def index(request):
 
 
 # 书籍列表
-class BookListView(generic.ListView):
+class BookListView(LoginRequiredMixin, generic.ListView):
     model = Book
 
     paginate_by = 10   # 分页，每页的条数
